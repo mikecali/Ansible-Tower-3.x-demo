@@ -1,0 +1,10 @@
+---
+webserver_hostname: webserver01
+dbserver_hostname: database01
+
+# Firewall configuration.
+firewall_allowed_tcp_ports:
+  - 22
+firewall_allowed_udp_ports:
+  - 111
+

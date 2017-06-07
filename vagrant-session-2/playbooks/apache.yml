@@ -1,0 +1,33 @@
+---
+- hosts: webserver
+  become: yes
+
+  tasks:
+
+    - name: install Apache
+      yum: name=httpd  state=present
+
+    - name: enable apache from start
+      command: systemctl enable httpd.service
+
+    - name: start httpd daemon
+      command: systemctl start httpd.service
+    
+    - name: start Firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+      register: result
+
+
+    - name: allow port 80 
+      command: firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+    - name: Start and enable firewalld service
+      service:
+        name: firewalld
+        state: restarted
+        enabled: yes
+      register: result
+

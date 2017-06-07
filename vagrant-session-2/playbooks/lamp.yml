@@ -1,0 +1,27 @@
+---
+- hosts: webserver
+  become: yes
+  tasks:
+  - name: Install Apache
+    yum: name=httpd state=latest
+
+  - name: Install MariaDB
+    yum: name=mariadb-server state=latest
+
+  - name: Install PHP5
+    yum: name=php state=latest
+
+  - name: Start the Apache server
+    service: name=httpd state=started
+
+  - name: Install firewalld
+    yum: name=firewalld state=latest
+
+  - name: Start firewalld
+    service: name=firewalld state=started
+
+  - name: Open firewall
+    command: firewall-cmd --add-service=http --permanent
+
+  - name: Start firewalld
+    service: name=firewalld state=restarted

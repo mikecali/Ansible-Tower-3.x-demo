@@ -1,0 +1,9 @@
+[webserver]
+192.168.29.3
+
+[dbserver]
+192.168.29.2
+
+[all:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/playbooks/keys/vagrant

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: verify if apache is installed
+      shell: rpm -qa httpd
+      register: outhttpd
+
+    - debug:
+        msg: "{{ outhttpd.stdout }}"
+
+    - name: verify if mariadb is installed
+      shell: rpm -qa mariadb
+      register: outmariadb
+
+    - debug:
+        msg: "{{ outmariadb.stdout }}"

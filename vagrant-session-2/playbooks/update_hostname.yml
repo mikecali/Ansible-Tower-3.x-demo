@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: true
+
+  pre_tasks:
+    - include_vars: ~/playbooks/vars.yml
+
+  tasks:
+
+    - name: change web server hostname
+      shell: hostnamectl set-hostname "{{ webserver_hostname }}"
+      when: ansible_enp0s8.ipv4.address == "192.168.29.3"
+
+    - name: change database server hostname
+      shell: hostnamectl set-hostname "{{ dbserver_hostname }}"
+      when: ansible_enp0s8.ipv4.address == "192.168.29.2"

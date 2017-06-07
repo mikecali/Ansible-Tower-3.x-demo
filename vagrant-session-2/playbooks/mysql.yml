@@ -1,0 +1,32 @@
+---
+- hosts: dbserver
+  become: yes
+
+  tasks:
+
+    - name: install mysql
+      yum: name=mariadb-server  state=present
+
+    - name: enable mysql from start
+      command: systemctl enable mariadb.service
+
+    - name: start mariadb daemon
+      command: systemctl start mariadb.service
+
+    - name: start Firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+      register: result
+    
+    - name: all mariadb ports
+      command: firewall-cmd --permanent --add-port=3306/tcp
+
+    - name: Start and enable firewalld service
+      service:
+        name: firewalld
+        state: restarted
+        enabled: yes
+      register: result
+

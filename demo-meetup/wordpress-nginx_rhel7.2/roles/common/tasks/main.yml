@@ -1,0 +1,33 @@
+---
+
+- name: disable Firewalld
+  shell: systemctl stop firewalld
+
+#- name: make sure proxy is included
+#  template:
+#    src: environment.j2
+#    dest: /etc/environment
+#    owner: root
+#    group: root
+#    mode: 0644
+
+- name: make sure the new environment variable is loaded
+  shell: source /etc/environment 
+
+- name: Copy the NGINX repository definition
+  copy: src=nginx.repo dest=/etc/yum.repos.d/
+
+- name: Copy the EPEL repository definition
+  copy: src=epel.repo dest=/etc/yum.repos.d/
+
+- name: Copy the REMI repository definition
+  copy: src=remi.repo dest=/etc/yum.repos.d/
+
+- name: Create the GPG key for NGINX
+  copy: src=RPM-GPG-KEY-NGINX dest=/etc/pki/rpm-gpg
+
+- name: Create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
+
+- name: Create the GPG key for REMI
+  copy: src=RPM-GPG-KEY-remi dest=/etc/pki/rpm-gpg

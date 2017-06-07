@@ -1,0 +1,13 @@
+---
+- name: cleaning up!
+  hosts: all
+
+  tasks:
+
+  - name: Clean-up
+    yum: name={{ item }} state=absent
+    with_items:
+     - mariadb-server
+     - MySQL-python
+     - libselinux-python
+     - libsemanage-python

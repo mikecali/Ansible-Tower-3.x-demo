@@ -1,0 +1,11 @@
+---
+- name: Verifying Installation!
+  hosts: all
+
+  tasks:
+
+  - name: Verify Status
+    systemd: name={{ item }} state=started
+    with_items:
+     - mariadb
+     - nginx

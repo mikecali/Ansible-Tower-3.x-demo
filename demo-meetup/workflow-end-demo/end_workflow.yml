@@ -1,0 +1,8 @@
+---
+- name: Workflow Demo Only!
+  hosts: all
+ 
+  tasks:
+ 
+  - name: Workflow Demo End!
+    shell: echo "Demo End Here."

@@ -1,0 +1,12 @@
+---
+- name: Install Worpress
+  hosts: webserver
+  gather_facts: True
+
+
+  pre_tasks:
+    - include_vars: ~/playbooks/vars.yml
+
+  roles:
+    - { role: ansible-role-wordpress }
+
