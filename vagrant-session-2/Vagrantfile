@@ -33,8 +33,8 @@ Vagrant.configure("2") do |config|
   boxes.each do |opts|
     config.vm.define opts[:name] do |config|
 #   Only Enable this if you are connecting to Proxy server
-#      config.proxy.http     = "http://usernam:password@dnzwgpx2.datacom.co.nz:80"
-#      config.proxy.https    = "http://usernam:password@dnzwgpx2.datacom.co.nz:80"
+#      config.proxy.http     = "http://usernam:password@proxy.com:80"
+#      config.proxy.https    = "http://usernam:password@proxy.com:80"
       config.proxy.no_proxy = "localhost,127.0.0.1"
       config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
       config.ssh.insert_key = false
