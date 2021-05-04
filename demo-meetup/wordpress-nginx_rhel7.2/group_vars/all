@@ -14,7 +14,7 @@ wp_db_password: secret
 
 # This is used for the nginx server configuration, but access to the
 # WordPress site is not restricted by a named host.
-nginx_port: 80
+nginx_port: 8080
 server_hostname: server.example.com
 
 # Disable All Updates
