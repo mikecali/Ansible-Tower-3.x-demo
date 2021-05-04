@@ -1,0 +1,8 @@
+---
+- name: cleaning up!
+  hosts: all
+
+  tasks:
+
+  - name: Stop httpd
+    service: name=httpd state=stopped
